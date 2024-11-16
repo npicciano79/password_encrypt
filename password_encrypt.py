@@ -26,9 +26,10 @@ class hashedPassword:
 
 #takes user password and generates hash
 #adds salt into hashed password
-def f_create_Password_Hash (lv_password):
+def f_create_Hash (lv_pass_user_arr):
     #print('lv_pass: '+lv_password)
-    return pbkdf2_sha256.hash(lv_password)
+    for i in range(1):
+        return pbkdf2_sha256.hash(lv_pass_user_arr[i])
     
    
    
@@ -39,17 +40,23 @@ def f_create_Password_Hash (lv_password):
 #initialize program
 if __name__ == "__main__":
     
-    #retrieve user password as lv_password    
+    #retrieve username and password from user and stored in array 
+    lv_pass_user_arr = [] 
+    lv_username = input('Enter your username: ')
+    lv_pass_user_arr.append(lv_username)
     lv_password = input('Enter your password: ')
-    
+    lv_pass_user_arr.append(lv_password)
+    print(lv_pass_user_arr)
     #passes lv_password to has function and returns
     #sv hash as hash and salt
-    sv_hashedPass_Salt = f_create_Password_Hash (lv_password)
+    sv_hashedPass_Salt = f_create_Hash (lv_pass_user_arr)
 
+    print('test array: '+sv_hashedPass_Salt)
+    '''
     lv_salt,lv_hash = sv_hashedPass_Salt.split("-")[0], sv_hashedPass_Salt.split("-")[1]
     
     print ('hash: '+lv_hash+" salt: "+lv_salt)
-    
+    '''
     #call call hashedPassword 
     #pv_pass = hashedPassword (1234 , 'pfv' , 0000, 'Nick')  
     
